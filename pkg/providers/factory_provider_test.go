@@ -112,6 +112,10 @@ func TestCreateProviderFromConfig_DefaultAPIBase(t *testing.T) {
 		{"vllm", "vllm"},
 		{"deepseek", "deepseek"},
 		{"ollama", "ollama"},
+		{"volcengine", "volcengine"},
+		{"volcengine-coding-plan", "volcengine-coding-plan"},
+		{"byteplus", "byteplus"},
+		{"byteplus-coding-plan", "byteplus-coding-plan"},
 	}
 
 	for _, tt := range tests {

@@ -89,6 +89,74 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 			},
 		},
 		{
+			providerNames: []string{"byteplus-coding-plan", "byteplus_coding_plan"},
+			protocol:      "byteplus-coding-plan",
+			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
+				if p.BytePlusCodingPlan.APIKey == "" && p.BytePlusCodingPlan.APIBase == "" {
+					return ModelConfig{}, false
+				}
+				return ModelConfig{
+				ModelName:      "ark-code-latest",
+				Model:          "byteplus-coding-plan/ark-code-latest",
+					APIKey:         p.BytePlusCodingPlan.APIKey,
+					APIBase:        p.BytePlusCodingPlan.APIBase,
+					Proxy:          p.BytePlusCodingPlan.Proxy,
+					RequestTimeout: p.BytePlusCodingPlan.RequestTimeout,
+				}, true
+			},
+		},
+		{
+			providerNames: []string{"byteplus"},
+			protocol:      "byteplus",
+			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
+				if p.BytePlus.APIKey == "" && p.BytePlus.APIBase == "" {
+					return ModelConfig{}, false
+				}
+				return ModelConfig{
+				ModelName:      "seed-2-0-mini-260215",
+				Model:          "byteplus/seed-2-0-mini-260215",
+					APIKey:         p.BytePlus.APIKey,
+					APIBase:        p.BytePlus.APIBase,
+					Proxy:          p.BytePlus.Proxy,
+					RequestTimeout: p.BytePlus.RequestTimeout,
+				}, true
+			},
+		},
+		{
+			providerNames: []string{"volcengine-coding-plan", "volcengine_coding_plan"},
+			protocol:      "volcengine-coding-plan",
+			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
+				if p.VolcEngineCodingPlan.APIKey == "" && p.VolcEngineCodingPlan.APIBase == "" {
+					return ModelConfig{}, false
+				}
+				return ModelConfig{
+				ModelName:      "ark-code-latest",
+				Model:          "volcengine-coding-plan/ark-code-latest",
+					APIKey:         p.VolcEngineCodingPlan.APIKey,
+					APIBase:        p.VolcEngineCodingPlan.APIBase,
+					Proxy:          p.VolcEngineCodingPlan.Proxy,
+					RequestTimeout: p.VolcEngineCodingPlan.RequestTimeout,
+				}, true
+			},
+		},
+		{
+			providerNames: []string{"volcengine", "doubao"},
+			protocol:      "volcengine",
+			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
+				if p.VolcEngine.APIKey == "" && p.VolcEngine.APIBase == "" {
+					return ModelConfig{}, false
+				}
+				return ModelConfig{
+				ModelName:      "doubao-seed-2-0-pro-260215",
+				Model:          "volcengine/doubao-seed-2-0-pro-260215",
+					APIKey:         p.VolcEngine.APIKey,
+					APIBase:        p.VolcEngine.APIBase,
+					Proxy:          p.VolcEngine.Proxy,
+					RequestTimeout: p.VolcEngine.RequestTimeout,
+				}, true
+			},
+		},
+		{
 			providerNames: []string{"openrouter"},
 			protocol:      "openrouter",
 			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
@@ -272,23 +340,6 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 					APIBase:        p.Cerebras.APIBase,
 					Proxy:          p.Cerebras.Proxy,
 					RequestTimeout: p.Cerebras.RequestTimeout,
-				}, true
-			},
-		},
-		{
-			providerNames: []string{"volcengine", "doubao"},
-			protocol:      "volcengine",
-			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
-				if p.VolcEngine.APIKey == "" && p.VolcEngine.APIBase == "" {
-					return ModelConfig{}, false
-				}
-				return ModelConfig{
-					ModelName:      "volcengine",
-					Model:          "volcengine/doubao-pro",
-					APIKey:         p.VolcEngine.APIKey,
-					APIBase:        p.VolcEngine.APIBase,
-					Proxy:          p.VolcEngine.Proxy,
-					RequestTimeout: p.VolcEngine.RequestTimeout,
 				}, true
 			},
 		},

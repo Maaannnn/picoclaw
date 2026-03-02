@@ -94,7 +94,8 @@ func CreateProviderFromConfig(cfg *config.ModelConfig) (LLMProvider, string, err
 
 	case "openrouter", "groq", "zhipu", "gemini", "nvidia",
 		"ollama", "moonshot", "shengsuanyun", "deepseek", "cerebras",
-		"volcengine", "vllm", "qwen", "mistral":
+		"volcengine", "volcengine-coding-plan", "byteplus", "byteplus-coding-plan",
+		"vllm", "qwen", "mistral":
 		// All other OpenAI-compatible HTTP providers
 		if cfg.APIKey == "" && cfg.APIBase == "" {
 			return nil, "", fmt.Errorf("api_key or api_base is required for HTTP-based protocol %q", protocol)
@@ -200,6 +201,12 @@ func getDefaultAPIBase(protocol string) string {
 		return "https://api.cerebras.ai/v1"
 	case "volcengine":
 		return "https://ark.cn-beijing.volces.com/api/v3"
+	case "volcengine-coding-plan":
+		return "https://ark.cn-beijing.volces.com/api/coding/v3"
+	case "byteplus":
+		return "https://ark.ap-southeast.bytepluses.com/api/v3"
+	case "byteplus-coding-plan":
+		return "https://ark.ap-southeast.bytepluses.com/api/coding/v3"
 	case "qwen":
 		return "https://dashscope.aliyuncs.com/compatible-mode/v1"
 	case "vllm":

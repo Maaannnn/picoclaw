@@ -181,6 +181,42 @@ func resolveProviderSelection(cfg *config.Config) (providerSelection, error) {
 					sel.apiBase = "https://api.mistral.ai/v1"
 				}
 			}
+		case "volcengine", "doubao":
+			if cfg.Providers.VolcEngine.APIKey != "" {
+				sel.apiKey = cfg.Providers.VolcEngine.APIKey
+				sel.apiBase = cfg.Providers.VolcEngine.APIBase
+				sel.proxy = cfg.Providers.VolcEngine.Proxy
+				if sel.apiBase == "" {
+					sel.apiBase = "https://ark.cn-beijing.volces.com/api/v3"
+				}
+			}
+		case "volcengine-coding-plan", "volcengine_coding_plan":
+			if cfg.Providers.VolcEngineCodingPlan.APIKey != "" {
+				sel.apiKey = cfg.Providers.VolcEngineCodingPlan.APIKey
+				sel.apiBase = cfg.Providers.VolcEngineCodingPlan.APIBase
+				sel.proxy = cfg.Providers.VolcEngineCodingPlan.Proxy
+				if sel.apiBase == "" {
+					sel.apiBase = "https://ark.cn-beijing.volces.com/api/coding/v3"
+				}
+			}
+		case "byteplus":
+			if cfg.Providers.BytePlus.APIKey != "" {
+				sel.apiKey = cfg.Providers.BytePlus.APIKey
+				sel.apiBase = cfg.Providers.BytePlus.APIBase
+				sel.proxy = cfg.Providers.BytePlus.Proxy
+				if sel.apiBase == "" {
+					sel.apiBase = "https://ark.ap-southeast.bytepluses.com/api/v3"
+				}
+			}
+		case "byteplus-coding-plan", "byteplus_coding_plan":
+			if cfg.Providers.BytePlusCodingPlan.APIKey != "" {
+				sel.apiKey = cfg.Providers.BytePlusCodingPlan.APIKey
+				sel.apiBase = cfg.Providers.BytePlusCodingPlan.APIBase
+				sel.proxy = cfg.Providers.BytePlusCodingPlan.Proxy
+				if sel.apiBase == "" {
+					sel.apiBase = "https://ark.ap-southeast.bytepluses.com/api/coding/v3"
+				}
+			}
 		case "github_copilot", "copilot":
 			sel.providerType = providerTypeGitHubCopilot
 			if cfg.Providers.GitHubCopilot.APIBase != "" {

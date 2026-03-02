@@ -147,6 +147,56 @@ func TestResolveProviderSelection(t *testing.T) {
 			wantProxy:   "http://127.0.0.1:7890",
 		},
 		{
+			name: "volcengine provider uses volcengine base default",
+			setup: func(cfg *config.Config) {
+				cfg.Agents.Defaults.Provider = "volcengine"
+				cfg.Agents.Defaults.Model = "doubao-seed-2-0-pro-260215"
+				cfg.Providers.VolcEngine.APIKey = "volc-key"
+			},
+			wantType:    providerTypeHTTPCompat,
+			wantAPIBase: "https://ark.cn-beijing.volces.com/api/v3",
+		},
+		{
+			name: "volcengine doubao alias uses volcengine base",
+			setup: func(cfg *config.Config) {
+				cfg.Agents.Defaults.Provider = "doubao"
+				cfg.Agents.Defaults.Model = "doubao-seed-2-0-pro-260215"
+				cfg.Providers.VolcEngine.APIKey = "volc-key"
+			},
+			wantType:    providerTypeHTTPCompat,
+			wantAPIBase: "https://ark.cn-beijing.volces.com/api/v3",
+		},
+		{
+			name: "volcengine-coding-plan provider uses coding plan base",
+			setup: func(cfg *config.Config) {
+				cfg.Agents.Defaults.Provider = "volcengine-coding-plan"
+				cfg.Agents.Defaults.Model = "ark-code-latest"
+				cfg.Providers.VolcEngineCodingPlan.APIKey = "volc-coding-key"
+			},
+			wantType:    providerTypeHTTPCompat,
+			wantAPIBase: "https://ark.cn-beijing.volces.com/api/coding/v3",
+		},
+		{
+			name: "byteplus provider uses byteplus base default",
+			setup: func(cfg *config.Config) {
+				cfg.Agents.Defaults.Provider = "byteplus"
+				cfg.Agents.Defaults.Model = "seed-2-0-mini-260215"
+				cfg.Providers.BytePlus.APIKey = "byteplus-key"
+			},
+			wantType:    providerTypeHTTPCompat,
+			wantAPIBase: "https://ark.ap-southeast.bytepluses.com/api/v3",
+		},
+		{
+			name: "byteplus-coding-plan provider uses coding plan base",
+			setup: func(cfg *config.Config) {
+				cfg.Agents.Defaults.Provider = "byteplus-coding-plan"
+				cfg.Agents.Defaults.Model = "ark-code-latest"
+				cfg.Providers.BytePlusCodingPlan.APIKey = "byteplus-coding-key"
+			},
+			wantType:    providerTypeHTTPCompat,
+			wantAPIBase: "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+		},
+		{
 			name: "missing keys returns model config error",
 			setup: func(cfg *config.Config) {
 				cfg.Agents.Defaults.Model = "custom-model"

@@ -384,6 +384,10 @@ type DevicesConfig struct {
 
 type ProvidersConfig struct {
 	Anthropic     ProviderConfig       `json:"anthropic"`
+	BytePlusCodingPlan ProviderConfig  `json:"byteplus_coding_plan"`
+	BytePlus      ProviderConfig       `json:"byteplus"`
+	VolcEngineCodingPlan ProviderConfig `json:"volcengine_coding_plan"`
+	VolcEngine    ProviderConfig       `json:"volcengine"`
 	OpenAI        OpenAIProviderConfig `json:"openai"`
 	OpenRouter    ProviderConfig       `json:"openrouter"`
 	Groq          ProviderConfig       `json:"groq"`
@@ -396,7 +400,6 @@ type ProvidersConfig struct {
 	ShengSuanYun  ProviderConfig       `json:"shengsuanyun"`
 	DeepSeek      ProviderConfig       `json:"deepseek"`
 	Cerebras      ProviderConfig       `json:"cerebras"`
-	VolcEngine    ProviderConfig       `json:"volcengine"`
 	GitHubCopilot ProviderConfig       `json:"github_copilot"`
 	Antigravity   ProviderConfig       `json:"antigravity"`
 	Qwen          ProviderConfig       `json:"qwen"`
@@ -420,6 +423,9 @@ func (p ProvidersConfig) IsEmpty() bool {
 		p.DeepSeek.APIKey == "" && p.DeepSeek.APIBase == "" &&
 		p.Cerebras.APIKey == "" && p.Cerebras.APIBase == "" &&
 		p.VolcEngine.APIKey == "" && p.VolcEngine.APIBase == "" &&
+		p.VolcEngineCodingPlan.APIKey == "" && p.VolcEngineCodingPlan.APIBase == "" &&
+		p.BytePlus.APIKey == "" && p.BytePlus.APIBase == "" &&
+		p.BytePlusCodingPlan.APIKey == "" && p.BytePlusCodingPlan.APIBase == "" &&
 		p.GitHubCopilot.APIKey == "" && p.GitHubCopilot.APIBase == "" &&
 		p.Antigravity.APIKey == "" && p.Antigravity.APIBase == "" &&
 		p.Qwen.APIKey == "" && p.Qwen.APIBase == "" &&
@@ -758,6 +764,9 @@ func (c *Config) HasProvidersConfig() bool {
 		v.DeepSeek.APIKey != "" || v.DeepSeek.APIBase != "" ||
 		v.Cerebras.APIKey != "" || v.Cerebras.APIBase != "" ||
 		v.VolcEngine.APIKey != "" || v.VolcEngine.APIBase != "" ||
+		v.VolcEngineCodingPlan.APIKey != "" || v.VolcEngineCodingPlan.APIBase != "" ||
+		v.BytePlus.APIKey != "" || v.BytePlus.APIBase != "" ||
+		v.BytePlusCodingPlan.APIKey != "" || v.BytePlusCodingPlan.APIBase != "" ||
 		v.GitHubCopilot.APIKey != "" || v.GitHubCopilot.APIBase != "" ||
 		v.Antigravity.APIKey != "" || v.Antigravity.APIBase != "" ||
 		v.Qwen.APIKey != "" || v.Qwen.APIBase != "" ||

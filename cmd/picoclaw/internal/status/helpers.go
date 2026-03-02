@@ -52,6 +52,9 @@ func statusCmd() {
 		hasMoonshot := cfg.Providers.Moonshot.APIKey != ""
 		hasDeepSeek := cfg.Providers.DeepSeek.APIKey != ""
 		hasVolcEngine := cfg.Providers.VolcEngine.APIKey != ""
+		hasVolcEngineCodingPlan := cfg.Providers.VolcEngineCodingPlan.APIKey != ""
+		hasBytePlus := cfg.Providers.BytePlus.APIKey != ""
+		hasBytePlusCodingPlan := cfg.Providers.BytePlusCodingPlan.APIKey != ""
 		hasNvidia := cfg.Providers.Nvidia.APIKey != ""
 		hasOllama := cfg.Providers.Ollama.APIBase != ""
 
@@ -71,6 +74,9 @@ func statusCmd() {
 		fmt.Println("Moonshot API:", status(hasMoonshot))
 		fmt.Println("DeepSeek API:", status(hasDeepSeek))
 		fmt.Println("VolcEngine API:", status(hasVolcEngine))
+		fmt.Println("VolcEngine Coding Plan API:", status(hasVolcEngineCodingPlan))
+		fmt.Println("BytePlus API:", status(hasBytePlus))
+		fmt.Println("BytePlus Coding Plan API:", status(hasBytePlusCodingPlan))
 		fmt.Println("Nvidia API:", status(hasNvidia))
 		if hasVLLM {
 			fmt.Printf("vLLM/Local: ✓ %s\n", cfg.Providers.VLLM.APIBase)

@@ -179,6 +179,38 @@ func DefaultConfig() *Config {
 				APIKey:    "",
 			},
 
+			// BytePlus Coding Plan - https://console.byteplus.com/ark
+			{
+				ModelName: "ark-code-latest",
+				Model:     "byteplus-coding-plan/ark-code-latest",
+				APIBase:   "https://ark.ap-southeast.bytepluses.com/api/coding/v3",
+				APIKey:    "",
+			},
+
+			// BytePlus - https://console.byteplus.com/ark
+			{
+				ModelName: "seed-2-0-mini-260215",
+				Model:     "byteplus/seed-2-0-mini-260215",
+				APIBase:   "https://ark.ap-southeast.bytepluses.com/api/v3",
+				APIKey:    "",
+			},
+
+			// Volcengine Coding Plan (火山引擎 Coding Plan) - https://console.volcengine.com/ark
+			{
+				ModelName: "ark-code-latest",
+				Model:     "volcengine-coding-plan/ark-code-latest",
+				APIBase:   "https://ark.cn-beijing.volces.com/api/coding/v3",
+				APIKey:    "",
+			},
+
+			// Volcengine (火山引擎) - https://console.volcengine.com/ark
+			{
+				ModelName: "doubao-seed-2-0-pro-260215",
+				Model:     "volcengine/doubao-seed-2-0-pro-260215",
+				APIBase:   "https://ark.cn-beijing.volces.com/api/v3",
+				APIKey:    "",
+			},
+
 			// DeepSeek - https://platform.deepseek.com/
 			{
 				ModelName: "deepseek-chat",
@@ -246,14 +278,6 @@ func DefaultConfig() *Config {
 				ModelName: "cerebras-llama-3.3-70b",
 				Model:     "cerebras/llama-3.3-70b",
 				APIBase:   "https://api.cerebras.ai/v1",
-				APIKey:    "",
-			},
-
-			// Volcengine (火山引擎) - https://console.volcengine.com/ark
-			{
-				ModelName: "doubao-pro",
-				Model:     "volcengine/doubao-pro-32k",
-				APIBase:   "https://ark.cn-beijing.volces.com/api/v3",
 				APIKey:    "",
 			},
 

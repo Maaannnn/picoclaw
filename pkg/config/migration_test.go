@@ -114,32 +114,34 @@ func TestConvertProvidersToModelList_Nil(t *testing.T) {
 func TestConvertProvidersToModelList_AllProviders(t *testing.T) {
 	cfg := &Config{
 		Providers: ProvidersConfig{
-			OpenAI:        OpenAIProviderConfig{ProviderConfig: ProviderConfig{APIKey: "key1"}},
-			Anthropic:     ProviderConfig{APIKey: "key2"},
-			OpenRouter:    ProviderConfig{APIKey: "key3"},
-			Groq:          ProviderConfig{APIKey: "key4"},
-			Zhipu:         ProviderConfig{APIKey: "key5"},
-			VLLM:          ProviderConfig{APIKey: "key6"},
-			Gemini:        ProviderConfig{APIKey: "key7"},
-			Nvidia:        ProviderConfig{APIKey: "key8"},
-			Ollama:        ProviderConfig{APIKey: "key9"},
-			Moonshot:      ProviderConfig{APIKey: "key10"},
-			ShengSuanYun:  ProviderConfig{APIKey: "key11"},
-			DeepSeek:      ProviderConfig{APIKey: "key12"},
-			Cerebras:      ProviderConfig{APIKey: "key13"},
-			VolcEngine:    ProviderConfig{APIKey: "key14"},
-			GitHubCopilot: ProviderConfig{ConnectMode: "grpc"},
-			Antigravity:   ProviderConfig{AuthMethod: "oauth"},
-			Qwen:          ProviderConfig{APIKey: "key17"},
-			Mistral:       ProviderConfig{APIKey: "key18"},
+			OpenAI:               OpenAIProviderConfig{ProviderConfig: ProviderConfig{APIKey: "key1"}},
+			Anthropic:            ProviderConfig{APIKey: "key2"},
+			OpenRouter:           ProviderConfig{APIKey: "key3"},
+			Groq:                 ProviderConfig{APIKey: "key4"},
+			Zhipu:                ProviderConfig{APIKey: "key5"},
+			VLLM:                 ProviderConfig{APIKey: "key6"},
+			Gemini:               ProviderConfig{APIKey: "key7"},
+			Nvidia:               ProviderConfig{APIKey: "key8"},
+			Ollama:               ProviderConfig{APIKey: "key9"},
+			Moonshot:             ProviderConfig{APIKey: "key10"},
+			ShengSuanYun:         ProviderConfig{APIKey: "key11"},
+			DeepSeek:             ProviderConfig{APIKey: "key12"},
+			Cerebras:             ProviderConfig{APIKey: "key13"},
+			VolcEngine:           ProviderConfig{APIKey: "key14"},
+			VolcEngineCodingPlan: ProviderConfig{APIKey: "key15"},
+			BytePlus:             ProviderConfig{APIKey: "key16"},
+			BytePlusCodingPlan:   ProviderConfig{APIKey: "key17"},
+			GitHubCopilot:        ProviderConfig{ConnectMode: "grpc"},
+			Antigravity:          ProviderConfig{AuthMethod: "oauth"},
+			Qwen:                 ProviderConfig{APIKey: "key20"},
+			Mistral:              ProviderConfig{APIKey: "key21"},
 		},
 	}
 
 	result := ConvertProvidersToModelList(cfg)
 
-	// All 18 providers should be converted
-	if len(result) != 18 {
-		t.Errorf("len(result) = %d, want 18", len(result))
+	if len(result) != 21 {
+		t.Errorf("len(result) = %d, want 21", len(result))
 	}
 }
 
@@ -579,5 +581,77 @@ func TestConvertProvidersToModelList_LegacyModelWithProtocolPrefix(t *testing.T)
 	// Model should NOT have duplicated prefix
 	if result[0].Model != "openrouter/auto" {
 		t.Errorf("Model = %q, want %q (should not duplicate prefix)", result[0].Model, "openrouter/auto")
+	}
+}
+
+func TestConvertProvidersToModelList_VolcEngineCodingPlan(t *testing.T) {
+	cfg := &Config{
+		Providers: ProvidersConfig{
+			VolcEngineCodingPlan: ProviderConfig{APIKey: "volc-coding-key"},
+		},
+	}
+
+	result := ConvertProvidersToModelList(cfg)
+
+	if len(result) != 1 {
+		t.Fatalf("len(result) = %d, want 1", len(result))
+	}
+
+	if result[0].ModelName != "ark-code-latest" {
+		t.Errorf("ModelName = %q, want %q", result[0].ModelName, "ark-code-latest")
+	}
+	if result[0].Model != "volcengine-coding-plan/ark-code-latest" {
+		t.Errorf("Model = %q, want %q", result[0].Model, "volcengine-coding-plan/ark-code-latest")
+	}
+	if result[0].APIKey != "volc-coding-key" {
+		t.Errorf("APIKey = %q, want %q", result[0].APIKey, "volc-coding-key")
+	}
+}
+
+func TestConvertProvidersToModelList_BytePlus(t *testing.T) {
+	cfg := &Config{
+		Providers: ProvidersConfig{
+			BytePlus: ProviderConfig{APIKey: "byteplus-key"},
+		},
+	}
+
+	result := ConvertProvidersToModelList(cfg)
+
+	if len(result) != 1 {
+		t.Fatalf("len(result) = %d, want 1", len(result))
+	}
+
+	if result[0].ModelName != "seed-2-0-mini-260215" {
+		t.Errorf("ModelName = %q, want %q", result[0].ModelName, "seed-2-0-mini-260215")
+	}
+	if result[0].Model != "byteplus/seed-2-0-mini-260215" {
+		t.Errorf("Model = %q, want %q", result[0].Model, "byteplus/seed-2-0-mini-260215")
+	}
+	if result[0].APIKey != "byteplus-key" {
+		t.Errorf("APIKey = %q, want %q", result[0].APIKey, "byteplus-key")
+	}
+}
+
+func TestConvertProvidersToModelList_BytePlusCodingPlan(t *testing.T) {
+	cfg := &Config{
+		Providers: ProvidersConfig{
+			BytePlusCodingPlan: ProviderConfig{APIKey: "byteplus-coding-key"},
+		},
+	}
+
+	result := ConvertProvidersToModelList(cfg)
+
+	if len(result) != 1 {
+		t.Fatalf("len(result) = %d, want 1", len(result))
+	}
+
+	if result[0].ModelName != "ark-code-latest" {
+		t.Errorf("ModelName = %q, want %q", result[0].ModelName, "ark-code-latest")
+	}
+	if result[0].Model != "byteplus-coding-plan/ark-code-latest" {
+		t.Errorf("Model = %q, want %q", result[0].Model, "byteplus-coding-plan/ark-code-latest")
+	}
+	if result[0].APIKey != "byteplus-coding-key" {
+		t.Errorf("APIKey = %q, want %q", result[0].APIKey, "byteplus-coding-key")
 	}
 }
