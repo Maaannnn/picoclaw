@@ -96,8 +96,8 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 					return ModelConfig{}, false
 				}
 				return ModelConfig{
-				ModelName:      "ark-code-latest",
-				Model:          "byteplus-coding-plan/ark-code-latest",
+					ModelName:      "ark-code-latest",
+					Model:          "byteplus-coding-plan/ark-code-latest",
 					APIKey:         p.BytePlusCodingPlan.APIKey,
 					APIBase:        p.BytePlusCodingPlan.APIBase,
 					Proxy:          p.BytePlusCodingPlan.Proxy,
@@ -113,8 +113,8 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 					return ModelConfig{}, false
 				}
 				return ModelConfig{
-				ModelName:      "seed-2-0-mini-260215",
-				Model:          "byteplus/seed-2-0-mini-260215",
+					ModelName:      "seed-2-0-mini-260215",
+					Model:          "byteplus/seed-2-0-mini-260215",
 					APIKey:         p.BytePlus.APIKey,
 					APIBase:        p.BytePlus.APIBase,
 					Proxy:          p.BytePlus.Proxy,
@@ -130,8 +130,8 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 					return ModelConfig{}, false
 				}
 				return ModelConfig{
-				ModelName:      "ark-code-latest",
-				Model:          "volcengine-coding-plan/ark-code-latest",
+					ModelName:      "ark-code-latest",
+					Model:          "volcengine-coding-plan/ark-code-latest",
 					APIKey:         p.VolcEngineCodingPlan.APIKey,
 					APIBase:        p.VolcEngineCodingPlan.APIBase,
 					Proxy:          p.VolcEngineCodingPlan.Proxy,
@@ -147,12 +147,29 @@ func ConvertProvidersToModelList(cfg *Config) []ModelConfig {
 					return ModelConfig{}, false
 				}
 				return ModelConfig{
-				ModelName:      "doubao-seed-2-0-pro-260215",
-				Model:          "volcengine/doubao-seed-2-0-pro-260215",
+					ModelName:      "doubao-seed-2-0-pro-260215",
+					Model:          "volcengine/doubao-seed-2-0-pro-260215",
 					APIKey:         p.VolcEngine.APIKey,
 					APIBase:        p.VolcEngine.APIBase,
 					Proxy:          p.VolcEngine.Proxy,
 					RequestTimeout: p.VolcEngine.RequestTimeout,
+				}, true
+			},
+		},
+		{
+			providerNames: []string{"litellm"},
+			protocol:      "litellm",
+			buildConfig: func(p ProvidersConfig) (ModelConfig, bool) {
+				if p.LiteLLM.APIKey == "" && p.LiteLLM.APIBase == "" {
+					return ModelConfig{}, false
+				}
+				return ModelConfig{
+					ModelName:      "litellm",
+					Model:          "litellm/auto",
+					APIKey:         p.LiteLLM.APIKey,
+					APIBase:        p.LiteLLM.APIBase,
+					Proxy:          p.LiteLLM.Proxy,
+					RequestTimeout: p.LiteLLM.RequestTimeout,
 				}, true
 			},
 		},
